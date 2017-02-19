@@ -15,6 +15,11 @@ class BucketListTableViewController: UITableViewController {
     private var completedItems = [BucketItem]()
     private var uncompletedItems = [BucketItem]()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadPrepopulatedList()
+    }
+    
     
     private func loadPrepopulatedList() {
         // Create two completed lists that will be prepopulated to user upon launch
@@ -26,11 +31,6 @@ class BucketListTableViewController: UITableViewController {
         bucketItems[0].append(prepopulatedList2)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadPrepopulatedList()
-    }
-
     
 
     // MARK: - UITableViewDataSource
@@ -44,6 +44,12 @@ class BucketListTableViewController: UITableViewController {
         return bucketItems[section].count
     }
 
+    
+    //
+    //  cellForRowAtIndexPath:
+    //  Asks the data source for a cell to insert in a particular location of the
+    //  table view.
+    //
     private struct Storyboard {
         static let ListCellIdentifier = "List"
     }
@@ -53,17 +59,46 @@ class BucketListTableViewController: UITableViewController {
         
         cell.bucketListNameLabel.text = list.name
         cell.bucketListDateLabel.text = list.dateToComplete
+        if list.isComplete {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
         return cell
     }
+    
+    
+    
+    //
+    //  editActionsForRowAtIndexPath:
+    //  Function to let user swipe the cell to choose edit the list or mark it done
+    //
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let done = UITableViewRowAction(style: .normal, title: "Done") {action, index in
+            tableView.deselectRow(at: indexPath, animated: true)
+            let tappedItem: BucketItem = self.bucketItems[indexPath.section][indexPath.row]
+            tappedItem.isComplete = true
+            tableView.reloadData()
+        }
+        done.backgroundColor = .green
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") {action, index in
+            tableView.deselectRow(at: indexPath, animated: true)
+            tableView.reloadData()
+
+        }
+        edit.backgroundColor = .orange
+        return [done, edit]
+    }
 
 
-    /*
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+
 
     /*
     // Override to support editing the table view.
@@ -92,18 +127,35 @@ class BucketListTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

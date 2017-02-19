@@ -61,11 +61,11 @@
 			isa = PBXGroup;
 			children = (
 				EC4DCB2A1E4D3A8C00302D5F /* Main.storyboard */,
+				EC97F20F1E50D96A00DBCDE9 /* AddItemViewController.swift */,
 				EC4DCB391E4F9DA100302D5F /* BucketListTableViewController.swift */,
 				EC97F20D1E50BF7000DBCDE9 /* BucketListTableViewCell.swift */,
 				EC4DCB3B1E4FA19900302D5F /* BucketItem.swift */,
 				EC4DCB381E4D3AC000302D5F /* Supporting files */,
-				EC97F20F1E50D96A00DBCDE9 /* AddItemViewController.swift */,
 			);
 			path = "UVa Bucket List";
 			sourceTree = "<group>";

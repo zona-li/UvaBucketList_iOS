@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X63-GY-ciI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X63-GY-ciI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,19 +23,19 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gAY-Gq-aph" id="e48-pH-gHy">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="75w-Fa-eNP">
                                             <rect key="frame" x="8" y="8" width="359" height="40"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXP-20-rzI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="43" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXP-20-rzI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="42.5" height="24"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPW-zJ-Z3K">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPW-zJ-Z3K">
                                                     <rect key="frame" x="0.0" y="24" width="27" height="16"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <nil key="textColor"/>
@@ -65,7 +65,7 @@
                     <navigationItem key="navigationItem" title="Uva Bucket List" id="ddD-SJ-zd6">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="czf-kA-tU8">
                             <connections>
-                                <segue destination="mB8-Un-pTG" kind="show" id="opQ-Gd-JHQ"/>
+                                <segue destination="mB8-Un-pTG" kind="show" id="ygg-V8-Eqe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -171,6 +171,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="dQL-PR-h9H" id="soh-bM-oZp"/>
+                        <outlet property="latitudeLabel" destination="MpH-GB-RBv" id="40z-j3-cx9"/>
+                        <outlet property="longitudeLabl" destination="5Wz-hq-AmX" id="ir9-Kr-096"/>
+                        <outlet property="nameLabel" destination="ZTZ-1F-mA4" id="nU2-gu-jzC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22I-Jq-ao6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -179,7 +185,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Qg6-Gv-WJY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ngS-Mb-ru4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X63-GY-ciI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="B5K-pY-GI9">
@@ -191,6 +196,7 @@
                         <segue destination="kyz-oO-3Rk" kind="relationship" relationship="rootViewController" id="Xkf-7B-Y98"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ngS-Mb-ru4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52" y="300"/>
         </scene>

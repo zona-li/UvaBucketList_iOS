@@ -10,7 +10,7 @@ import UIKit
 
 class BucketListTableViewController: UITableViewController {
     
-    // Array[1] will store uncompleted list items, Array[0] will store completed list items
+    // Array[0] will store uncompleted list items, Array[1] will store completed list items
     var bucketItems = [Array<BucketItem>]()
     private var completedItems = [BucketItem]()
     private var uncompletedItems = [BucketItem]()
@@ -25,10 +25,10 @@ class BucketListTableViewController: UITableViewController {
         // Create two completed lists that will be prepopulated to user upon launch
         let prepopulatedList1 = BucketItem(name: "Apply for graduation", date: "12/01/16", isComplete: true)
         let prepopulatedList2 = BucketItem(name: "Pick up cap and gown", date: "02/05/17", isComplete: true)
-        bucketItems.append(completedItems)
         bucketItems.append(uncompletedItems)
-        bucketItems[0].append(prepopulatedList1)
-        bucketItems[0].append(prepopulatedList2)
+        bucketItems.append(completedItems)
+        bucketItems[1].append(prepopulatedList1)
+        bucketItems[1].append(prepopulatedList2)
     }
     
     
@@ -77,7 +77,9 @@ class BucketListTableViewController: UITableViewController {
         let done = UITableViewRowAction(style: .normal, title: "Done") {action, index in
             tableView.deselectRow(at: indexPath, animated: true)
             let tappedItem: BucketItem = self.bucketItems[indexPath.section][indexPath.row]
+            self.bucketItems[indexPath.section].remove(at: indexPath.row)
             tappedItem.isComplete = true
+            self.bucketItems[1].append(tappedItem)
             tableView.reloadData()
         }
         done.backgroundColor = .green
@@ -127,7 +129,15 @@ class BucketListTableViewController: UITableViewController {
     }
     */
 
-  
+    //
+    //  Connecting cancel and done buttons to exit segue
+    //
+    @IBAction func unwindToList(segue: UIStoryboardSegue) {
+        let source = segue.source as! AddItemViewController
+        let bucketItem = source.bucketItem!
+        self.bucketItems[0].append(bucketItem)
+        self.tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

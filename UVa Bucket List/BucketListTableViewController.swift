@@ -18,6 +18,15 @@ class BucketListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPrepopulatedList()
+        bucketItems[0] = bucketItems[0].sorted(by: sortFunction)
+        bucketItems[1] = bucketItems[1].sorted(by: sortFunction)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bucketItems[0] = bucketItems[0].sorted(by: sortFunction)
+        bucketItems[1] = bucketItems[1].sorted(by: sortFunction)
+        tableView.reloadData()
     }
     
     
@@ -32,18 +41,18 @@ class BucketListTableViewController: UITableViewController {
     }
     
     
-
+    
     // MARK: - UITableViewDataSource
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // one section for completed list one section for uncompleted list
         return 2
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bucketItems[section].count
     }
-
+    
     
     //
     //  cellForRowAtIndexPath:
@@ -80,19 +89,23 @@ class BucketListTableViewController: UITableViewController {
             self.bucketItems[indexPath.section].remove(at: indexPath.row)
             tappedItem.isComplete = true
             self.bucketItems[1].append(tappedItem)
+            self.bucketItems[1] = self.bucketItems[1].sorted(by: self.sortFunction)
             tableView.reloadData()
         }
         done.backgroundColor = .green
         let edit = UITableViewRowAction(style: .normal, title: "Edit") {action, index in
-            tableView.deselectRow(at: indexPath, animated: true)
-            tableView.reloadData()
-
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Edit Item") as! EditItemViewController
+            let selectedItem = self.bucketItems[indexPath.section][indexPath.row]
+            vc.item = selectedItem
+            self.present(vc, animated: true, completion: {
+                tableView.deselectRow(at: indexPath, animated: true)
+            })
         }
         edit.backgroundColor = .orange
         return [done, edit]
     }
-
-
+    
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -100,35 +113,35 @@ class BucketListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-
-
+    
+    
     /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
     //
     //  Connecting cancel and done buttons to exit segue
     //
@@ -136,9 +149,27 @@ class BucketListTableViewController: UITableViewController {
         let source = segue.source as! AddItemViewController
         let bucketItem = source.bucketItem!
         self.bucketItems[0].append(bucketItem)
+        self.bucketItems[0] = self.bucketItems[0].sorted(by: self.sortFunction)
         self.tableView.reloadData()
     }
-
+    
+    private func sortFunction(s1: BucketItem, s2: BucketItem) -> Bool {
+        var a1 = s1.dateToComplete.components(separatedBy: "/")
+        var a2 = s2.dateToComplete.components(separatedBy: "/")
+        if a1[2] < a2[2] {
+            return true
+        } else if a1[2] == a2[2] {
+            if a1[1] < a2[1] {
+                return true
+            } else if a1[1] == a2[1] {
+                if a1[0] < a2[0] {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

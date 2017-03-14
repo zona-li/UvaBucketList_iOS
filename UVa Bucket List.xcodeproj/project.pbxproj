@@ -15,6 +15,7 @@
 		EC4DCB3C1E4FA19900302D5F /* BucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4DCB3B1E4FA19900302D5F /* BucketItem.swift */; };
 		EC97F20E1E50BF7000DBCDE9 /* BucketListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC97F20D1E50BF7000DBCDE9 /* BucketListTableViewCell.swift */; };
 		EC97F2101E50D96A00DBCDE9 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC97F20F1E50D96A00DBCDE9 /* AddItemViewController.swift */; };
+		ECE2CA671E5A840F00BB213B /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2CA661E5A840F00BB213B /* EditItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		EC4DCB3B1E4FA19900302D5F /* BucketItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketItem.swift; sourceTree = "<group>"; };
 		EC97F20D1E50BF7000DBCDE9 /* BucketListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketListTableViewCell.swift; sourceTree = "<group>"; };
 		EC97F20F1E50D96A00DBCDE9 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		ECE2CA661E5A840F00BB213B /* EditItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				EC4DCB2A1E4D3A8C00302D5F /* Main.storyboard */,
+				ECE2CA661E5A840F00BB213B /* EditItemViewController.swift */,
 				EC97F20F1E50D96A00DBCDE9 /* AddItemViewController.swift */,
 				EC4DCB391E4F9DA100302D5F /* BucketListTableViewController.swift */,
 				EC97F20D1E50BF7000DBCDE9 /* BucketListTableViewCell.swift */,
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC97F2101E50D96A00DBCDE9 /* AddItemViewController.swift in Sources */,
+				ECE2CA671E5A840F00BB213B /* EditItemViewController.swift in Sources */,
 				EC4DCB3C1E4FA19900302D5F /* BucketItem.swift in Sources */,
 				EC97F20E1E50BF7000DBCDE9 /* BucketListTableViewCell.swift in Sources */,
 				EC4DCB271E4D3A8C00302D5F /* AppDelegate.swift in Sources */,
